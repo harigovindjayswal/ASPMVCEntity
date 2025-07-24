@@ -1,0 +1,52 @@
+﻿@model List< ASPMVCEntity.Models.getStudent_Result>
+ @using ASPMVCEntity.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
+
+    <div class="row">
+        <table>
+            <tr>
+                <th>SrNo</th>
+                <th>studentName</th>
+                <th>dob</th>
+                <th>gender</th>
+                <th>degreeId</th>
+                <th>branchId</th>
+                <th>emailId</th>
+                <th>mobileNo</th>
+                <th>iActive</th>
+                <th>photo</th>
+                <th>doc</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (getStudent_Result m in Model)
+            {
+                <tr>
+                    <td>@m.SrNo</td>
+                    <td>@m.studentName</td>
+                    <td>@m.dob</td>
+                    <td>@m.gender</td>
+                    <td>@m.degreeId</td>
+                    <td>@m.branchId</td>
+                    <td>@m.emailId</td>
+                    <td>@m.mobileNo</td>
+                    <td>@m.iActive</td>
+                    <td><img src="@m.photoPath" width="60" /></td>
+                    <td><a href="@m.docPath">Document</a></td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = m.SrNo })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = m.SrNo })</td>
+                </tr>
+            }
+        </table>
+       @Html.ActionLink("Create", "Create");
+    </div>
+</main>

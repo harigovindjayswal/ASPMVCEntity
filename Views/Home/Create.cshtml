@@ -1,0 +1,66 @@
+﻿@model ASPMVCEntity.Models.Student_Info
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    <div class="row">
+        <table>
+            <tr>
+                <th>studentName</th>
+                <th>dob</th>
+                <th>gender</th>
+                <th>degreeId</th>
+                <th>branchId</th>
+                <th>emailId</th>
+                <th>mobileNo</th>
+                <th>iActive</th>
+                <th>photo</th>
+                <th>doc</th>
+            </tr>
+
+            <tr>
+
+                <td>@Html.TextBoxFor(m => m.studentName)</td>
+                <td>@Html.TextBoxFor(m => m.dob)</td>
+                <td>
+                    <label>@Html.RadioButtonFor(m => m.gender, "M") Male</label>
+                    <label>@Html.RadioButtonFor(m => m.gender, "F") Female</label>
+
+                </td>
+                <td>@Html.DropDownListFor(m => m.degreeId, (IEnumerable<SelectListItem>)ViewBag.degree, "--Select--")</td>
+                <td>@Html.DropDownListFor(m => m.branchId, (IEnumerable<SelectListItem>)ViewBag.branch, "--Select--")</td>
+                <td>@Html.TextBoxFor(m => m.emailId)</td>
+                <td>@Html.TextBoxFor(m => m.mobileNo)</td>
+                <td>@Html.CheckBoxFor(m => m.iActive)</td>
+                <td><input type="file" name="photo" /></td>
+                <td><input type="file" name="doc" />/td>
+                <td><input type="submit" name="submit" value="Submit" /></td>
+
+            </tr>
+
+        </table>
+        @Html.ActionLink("View", "Index");
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#degree').change(function () {
+                const d = $('#degree').val();
+                $.ajax({
+                    url: "BindDtls?flag=branch&param=" + d,
+                    method: 'get',
+                    datatype: 'json',
+                    success: function (data) {
+
+                    }
+                })
+            })
+        });
+    </script>
+}

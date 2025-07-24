@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StudentRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'StudentRegistration.dbo.Branch' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Branch">
+          <Property Name="branchId" Type="varchar" MaxLength="10" />
+          <Property Name="branchName" Type="varchar" MaxLength="50" />
+          <Property Name="degreeId" Type="varchar" MaxLength="10" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'StudentRegistration.dbo.Degree' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Degree">
+          <Property Name="degreeId" Type="varchar" MaxLength="10" />
+          <Property Name="degreeName" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentRegistration.dbo.DocDtls' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DocDtls">
+          <Key>
+            <PropertyRef Name="SrNo" />
+          </Key>
+          <Property Name="SrNo" Type="int" Nullable="false" />
+          <Property Name="PhotoPath" Type="varchar" MaxLength="1000" />
+          <Property Name="OthDocPath" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentRegistration.dbo.Student_Info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Student_Info">
+          <Key>
+            <PropertyRef Name="SrNo" />
+          </Key>
+          <Property Name="SrNo" Type="int" Nullable="false" />
+          <Property Name="studentName" Type="varchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="degreeId" Type="varchar" MaxLength="10" />
+          <Property Name="branchId" Type="varchar" MaxLength="10" />
+          <Property Name="emailId" Type="varchar" MaxLength="50" />
+          <Property Name="mobileNo" Type="varchar" MaxLength="10" />
+          <Property Name="iActive" Type="bit" />
+        </EntityType>
+        <Function Name="BindDtls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="flag" Type="varchar" Mode="In" />
+          <Parameter Name="param" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="deleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="insertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentName" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="gender" Type="char" Mode="In" />
+          <Parameter Name="degreeId" Type="varchar" Mode="In" />
+          <Parameter Name="branchId" Type="varchar" Mode="In" />
+          <Parameter Name="emailId" Type="varchar" Mode="In" />
+          <Parameter Name="mobileNo" Type="varchar" Mode="In" />
+          <Parameter Name="iActive" Type="bit" Mode="In" />
+          <Parameter Name="photoPath" Type="varchar" Mode="In" />
+          <Parameter Name="othDocPath" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Student" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="studentName" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="gender" Type="char" Mode="In" />
+          <Parameter Name="degreeId" Type="varchar" Mode="In" />
+          <Parameter Name="branchId" Type="varchar" Mode="In" />
+          <Parameter Name="emailId" Type="varchar" Mode="In" />
+          <Parameter Name="mobileNo" Type="varchar" Mode="In" />
+          <Parameter Name="iActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="updateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentName" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="gender" Type="char" Mode="In" />
+          <Parameter Name="degreeId" Type="varchar" Mode="In" />
+          <Parameter Name="branchId" Type="varchar" Mode="In" />
+          <Parameter Name="emailId" Type="varchar" Mode="In" />
+          <Parameter Name="mobileNo" Type="varchar" Mode="In" />
+          <Parameter Name="iActive" Type="bit" Mode="In" />
+          <Parameter Name="photoPath" Type="varchar" Mode="In" />
+          <Parameter Name="othDocPath" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="StudentRegistrationModelStoreContainer">
+          <EntitySet Name="DocDtls" EntityType="Self.DocDtls" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DocDtls].[SrNo] AS [SrNo], 
+    [DocDtls].[PhotoPath] AS [PhotoPath], 
+    [DocDtls].[OthDocPath] AS [OthDocPath]
+    FROM [dbo].[DocDtls] AS [DocDtls]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Student_Info" EntityType="Self.Student_Info" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Student_Info].[SrNo] AS [SrNo], 
+    [Student_Info].[studentName] AS [studentName], 
+    [Student_Info].[dob] AS [dob], 
+    [Student_Info].[gender] AS [gender], 
+    [Student_Info].[degreeId] AS [degreeId], 
+    [Student_Info].[branchId] AS [branchId], 
+    [Student_Info].[emailId] AS [emailId], 
+    [Student_Info].[mobileNo] AS [mobileNo], 
+    [Student_Info].[iActive] AS [iActive]
+    FROM [dbo].[Student_Info] AS [Student_Info]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DocDtl">
+          <Key>
+            <PropertyRef Name="SrNo" />
+          </Key>
+          <Property Name="SrNo" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="OthDocPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Student_Info">
+          <Key>
+            <PropertyRef Name="SrNo" />
+          </Key>
+          <Property Name="SrNo" Type="Int32" Nullable="false" />
+          <Property Name="studentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="degreeId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="branchId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="iActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="StudentRegistrationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DocDtls" EntityType="Self.DocDtl" />
+          <EntitySet Name="Student_Info" EntityType="Self.Student_Info" />
+          <FunctionImport Name="BindDtls" ReturnType="Collection(StudentRegistrationModel.BindDtls_Result)">
+            <Parameter Name="flag" Mode="In" Type="String" />
+            <Parameter Name="param" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteStudent">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getStudent" ReturnType="Collection(StudentRegistrationModel.getStudent_Result)" />
+          <FunctionImport Name="insertStudent">
+            <Parameter Name="studentName" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="degreeId" Mode="In" Type="String" />
+            <Parameter Name="branchId" Mode="In" Type="String" />
+            <Parameter Name="emailId" Mode="In" Type="String" />
+            <Parameter Name="mobileNo" Mode="In" Type="String" />
+            <Parameter Name="iActive" Mode="In" Type="Boolean" />
+            <Parameter Name="photoPath" Mode="In" Type="String" />
+            <Parameter Name="othDocPath" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Student">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="studentName" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="degreeId" Mode="In" Type="String" />
+            <Parameter Name="branchId" Mode="In" Type="String" />
+            <Parameter Name="emailId" Mode="In" Type="String" />
+            <Parameter Name="mobileNo" Mode="In" Type="String" />
+            <Parameter Name="iActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="updateStudent">
+            <Parameter Name="studentName" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="degreeId" Mode="In" Type="String" />
+            <Parameter Name="branchId" Mode="In" Type="String" />
+            <Parameter Name="emailId" Mode="In" Type="String" />
+            <Parameter Name="mobileNo" Mode="In" Type="String" />
+            <Parameter Name="iActive" Mode="In" Type="Boolean" />
+            <Parameter Name="photoPath" Mode="In" Type="String" />
+            <Parameter Name="othDocPath" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="BindDtls_Result">
+          <Property Type="String" Name="ID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getStudent_Result">
+          <Property Type="Int32" Name="SrNo" Nullable="false" />
+          <Property Type="String" Name="studentName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="dob" Nullable="true" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="degreeId" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="branchId" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="emailId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobileNo" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="iActive" Nullable="true" />
+          <Property Type="String" Name="photoPath" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="docPath" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentRegistrationModelStoreContainer" CdmEntityContainer="StudentRegistrationEntities">
+          <EntitySetMapping Name="DocDtls">
+            <EntityTypeMapping TypeName="StudentRegistrationModel.DocDtl">
+              <MappingFragment StoreEntitySet="DocDtls">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="OthDocPath" ColumnName="OthDocPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Info">
+            <EntityTypeMapping TypeName="StudentRegistrationModel.Student_Info">
+              <MappingFragment StoreEntitySet="Student_Info">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="studentName" ColumnName="studentName" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="degreeId" ColumnName="degreeId" />
+                <ScalarProperty Name="branchId" ColumnName="branchId" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+                <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+                <ScalarProperty Name="iActive" ColumnName="iActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BindDtls" FunctionName="StudentRegistrationModel.Store.BindDtls">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentRegistrationModel.BindDtls_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteStudent" FunctionName="StudentRegistrationModel.Store.deleteStudent" />
+          <FunctionImportMapping FunctionImportName="getStudent" FunctionName="StudentRegistrationModel.Store.getStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentRegistrationModel.getStudent_Result">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="studentName" ColumnName="studentName" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="degreeId" ColumnName="degreeId" />
+                <ScalarProperty Name="branchId" ColumnName="branchId" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+                <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+                <ScalarProperty Name="iActive" ColumnName="iActive" />
+                <ScalarProperty Name="photoPath" ColumnName="photoPath" />
+                <ScalarProperty Name="docPath" ColumnName="docPath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertStudent" FunctionName="StudentRegistrationModel.Store.insertStudent" />
+          <FunctionImportMapping FunctionImportName="Student" FunctionName="StudentRegistrationModel.Store.Student" />
+          <FunctionImportMapping FunctionImportName="updateStudent" FunctionName="StudentRegistrationModel.Store.updateStudent" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
